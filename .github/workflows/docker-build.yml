@@ -19,13 +19,13 @@ jobs:          #Un job est une tâche que GitHub doit exécuter.
 
       - name: Build Docker images
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/mon_projet_backend:latest ./backend
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/mon_projet_frontend:latest ./frontend
+          docker build -t Projet2025/mon_projet_backend:latest ./backend
+          docker build -t Projet2025/mon_projet_frontend:latest ./frontend
 
       - name: Push Docker images
         run: |
-          docker push ${{ secrets.DOCKER_USERNAME }}/mon_projet_backend:latest
-          docker push ${{ secrets.DOCKER_USERNAME }}/mon_projet_frontend:latest
+          docker push Projet2025/mon_projet_backend:latest
+          docker push Projet2025/mon_projet_frontend:latest
 # Construire l’image Docker à partir du Dockerfile du backend.
 # docker push → Envoie l’image sur Docker Hub pour qu’elle soit disponible partout
 
