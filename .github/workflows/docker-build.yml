@@ -1,0 +1,30 @@
+name: Build and Push Docker Image
+
+on:
+  push:
+    branches:
+      - main  # Exécute ce workflow uniquement si on pousse du code sur "main"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3  # Récupère le code source depuis GitHub
+
+      - name: Log in to Docker Hub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+      - name: Build Docker images
+        run: |
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/mon_projet_backend:latest ./backend
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/mon_projet_frontend:latest ./frontend
+
+      - name: Push Docker images
+        run: |
+          docker push ${{ secrets.DOCKER_USERNAME }}/mon_projet_backend:latest
+          docker push ${{ secrets.DOCKER_USERNAME }}/mon_projet_frontend:latest
+
+      - name: Logout from Docker Hub
+        run: docker logout  # Se déconnecter proprement de Docker Hub
