@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.backend
+    environment:
+      - DB_HOST=${DB_HOST}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_NAME=${DB_NAME}
+      - DB_PORT=${DB_PORT}
+      - JWT_SECRET=${JWT_SECRET}
+      - NODE_ENV=development
+      - PORT=3000
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./backend:/app
+      - ./backend/.env:/app/.env
+    networks:
+      - app_network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.front
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./frontend:/app
+    networks:
+      - app_network
+    depends_on:
+      - backend
+
+networks:
+  app_network:
+    driver: bridge
