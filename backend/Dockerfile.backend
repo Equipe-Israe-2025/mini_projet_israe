@@ -1,13 +1,10 @@
-# backend/Dockerfile.back
 FROM node:18-alpine
 
 WORKDIR /app
 
-# D'abord les dépendances (optimisation du cache)
 COPY package*.json ./
 RUN npm ci --quiet
 
-# Puis le reste du code
 COPY . .
 
 # Variables d'environnement
@@ -15,7 +12,6 @@ ENV NODE_ENV=development
 ENV PORT=3000
 EXPOSE 3000
 
-# Sécurité
 USER node
 
 CMD ["node", "app.js"]
