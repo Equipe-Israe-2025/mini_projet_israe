@@ -25,9 +25,8 @@ jobs:
 
       - name: Build Docker images
         run: |
-          cd mini_projet_israe
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/mon_projet_backend:latest -f backend/Dockerfile.backend backend
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/mon_projet_frontend:latest -f frontend/Dockerfile.front frontend
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/mon_projet_backend:latest -f ./backend/Dockerfile.backend ./backend
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/mon_projet_frontend:latest -f ./frontend/Dockerfile.front ./frontend
 
       - name: Push Docker images
         run: |
