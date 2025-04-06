@@ -25,6 +25,6 @@ jobs:
         run: |
           docker push ${{ secrets.DOCKER_USERNAME }}/mon_projet_backend:latest
           docker push ${{ secrets.DOCKER_USERNAME }}/mon_projet_frontend:latest
-
+          
       - name: Logout from Docker Hub
         run: docker logout  # Se déconnecter proprement de Docker Hub
