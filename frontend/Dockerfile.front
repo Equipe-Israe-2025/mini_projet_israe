@@ -23,4 +23,11 @@ COPY --from=client-builder /app/dist .
 EXPOSE 80
 
 #démarer Nginx
+<<<<<<< HEAD
 CMD ["nginx", "-g", "daemon off;"]
+=======
+CMD ["nginx", "-g", "daemon off;"]
+
+
+
+>>>>>>> 6e7dda05dd30dca0db85061276b2288e8d3dc7b4
