@@ -6,12 +6,19 @@ on:
       - main  # Exécute ce workflow uniquement si on pousse du code sur "main"
 
 jobs:
+
   build:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3  # Récupère le code source depuis GitHub
+      - name: Debug - Lister le dossier backend
+        run: ls -la ./backend
+
+      - name: Debug - Lister le dossier frontend
+        run: ls -la ./frontend
+
 
       - name: Log in to Docker Hub
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
