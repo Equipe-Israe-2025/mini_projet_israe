@@ -6,7 +6,7 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci
 
-#copier le reste du code source
+#copier le reste du code 
 COPY . .
 
 #construire l'application vue.js
