@@ -14,8 +14,9 @@ RUN npm run build
 
 #Etape de production avec un serveur web léger
 FROM nginx:alpine
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 WORKDIR /usr/share/nginx/html
-
+RUN rm -rf ./*
 #copier les fichier de build depuis l'étape précédente
 COPY --from=client-builder /app/dist .
 
