@@ -28,7 +28,7 @@ jobs:
         run: |
           docker build -t ${{ secrets.DOCKER_USERNAME }}/mon_projet_backend:latest -f ./backend/Dockerfile ./backend
           docker build -t ${{ secrets.DOCKER_USERNAME }}/mon_projet_frontend:latest -f ./frontend/Dockerfile ./frontend
-
+        
       - name: Push Docker images
         run: |
           docker push ${{ secrets.DOCKER_USERNAME }}/mon_projet_backend:latest
